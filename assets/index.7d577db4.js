@@ -280,6 +280,14 @@ and limitations under the License.
   div:last-child {
     text-align: right;
   }
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(1, 1fr);
+
+    div:last-child {
+      text-align: left;
+    }
+  }
 `;var Dg="/expenses-controller/assets/saving.155e2731.svg",Ig="/expenses-controller/assets/food.0624aa5f.svg",Mg="/expenses-controller/assets/house.4f16b2bb.svg",Fg="/expenses-controller/assets/expenses.033d1826.svg",jg="/expenses-controller/assets/hobbie.7bfd6d58.svg",Ug="/expenses-controller/assets/health.bdfd2349.svg",Wg="/expenses-controller/assets/subscription.ede3c429.svg";const Bg={saving:Dg,food:Ig,house:Mg,expenses:Fg,hobbies:jg,health:Ug,subscriptions:Wg};function bs({name:e,value:t,category:n,id:r,date:i,setEdit:l,setToDelete:o}){const u=()=>C(Cg,{children:C(yu,{onClick:()=>l({name:e,value:t,category:n,id:r,date:i}),children:"Edit"})}),a=()=>C(zg,{children:C(yu,{destructive:!0,onClick:()=>o(r),children:"Delete"})});return C(Lg,{children:C(zf,{children:C($f,{leadingActions:u(),trailingActions:a(),children:ne($g,{children:[C("div",{children:C("img",{src:Bg[n],alt:"Category Icon",height:"100"})}),ne("div",{children:[C("span",{children:n}),ne(qs,{children:[C("div",{children:C("h3",{children:e})}),C("div",{children:C("h3",{children:Ai(t)})})]}),ne(qs,{children:[C("div",{children:ne("p",{children:["Added on ",i]})}),C("div",{children:C("p",{children:"Swipe to Edit/Delete"})})]})]})]})})})})}const Vg=he.div`
   display: grid;
   grid-template-columns: 30% 1fr;
@@ -315,17 +323,22 @@ and limitations under the License.
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 10px;
 `;function Yg({expenses:e,setEdit:t,setToDelete:n,filter:r,setFilter:i}){const[l,o]=$.exports.useState([]),[u,a]=$.exports.useState(!1);return $.exports.useEffect(()=>{const s=e.filter(h=>h.category===r);o(s)},[r]),$.exports.useEffect(()=>{r!=="empty"&&l.length===0?a(!0):a(!1)},[l]),ne(Qg,{children:[C(Hg,{filter:r,setFilter:i}),C("h2",{children:e.length?"Expenses list":"Oops! there're no expenses to show"}),C("p",{children:u?"No expenses found in this category.":null}),e.length&&r==="empty"?e.map(s=>C(bs,{id:s.id,name:s.name,value:s.value,category:s.category,date:s.date,setEdit:t,setToDelete:n},s.id)):l.map(s=>C(bs,{id:s.id,name:s.name,value:s.value,category:s.category,date:s.date,setEdit:t,setToDelete:n},s.id))]})}const Gg=he.div`
-    position:fixed;
-    bottom:30px;
-    right:30px;
-    width:50px;
-    height:50px;
-    cursor:pointer;
-    transition-duration:.3s;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition-duration: 0.3s;
 
-    :hover{
-        transform:scale(1.1);
-    }
+  :hover {
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 767px) {
+    bottom: 10px;
+    right: 10px;
+  }
 `;function Xg(){return ne("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 297 297",children:[C("circle",{fill:"#91D7F2",cx:"148.5",cy:"148.5",r:"148.5"}),C("path",{fill:"#3997BD",d:"m245.337 127.5-193.674 42 124.85 124.85c59.546-11.369 106.468-58.291 117.837-117.837L245.337 127.5z"}),C("path",{fill:"#ecf0f1",d:"M245.337 127.5H169.5V51.663h-42V127.5H51.663v42H127.5v75.837h42V169.5h75.837z"})]})}function Kg({handleExpenses:e}){return C(Gg,{onClick:e,children:C(Xg,{})})}const Zg=he.div`
   position: fixed;
   display: flex;
