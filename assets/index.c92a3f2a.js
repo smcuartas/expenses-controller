@@ -353,7 +353,7 @@ and limitations under the License.
 
   @media (max-width: 767px) {
     padding: 50px 25px;
-    width: 90%;
+    width: 80%;
   }
 `,qg=he.span`
   position: absolute;
