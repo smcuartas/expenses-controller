@@ -1,15 +1,28 @@
 import { useEffect, useState } from 'react'
+import {
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from 'react-circular-progressbar'
 
 import * as S from './styled-budgetcontroller'
+import 'react-circular-progressbar/dist/styles.css'
 import toCash from '../../helpers'
 
-function BudgetController({ budget, setBudget, setValidBudget, expenses }) {
+function BudgetController({
+  budget,
+  setBudget,
+  setValidBudget,
+  expenses,
+  setExpenses,
+}) {
   const resetBudget = () => {
     setBudget(0)
+    setExpenses([])
     setValidBudget(false)
   }
 
   const [spent, setSpent] = useState(0)
+  const [percentage, setPercentage] = useState(0)
 
   useEffect(() => {
     const expensesValues = expenses.map((expense) => expense.value)
@@ -18,12 +31,29 @@ function BudgetController({ budget, setBudget, setValidBudget, expenses }) {
       0
     )
     setSpent(totalExpenses)
-  }, [expenses])
+
+    const newPercentage = (
+      ((budget - (budget - spent)) / budget) *
+      100
+    ).toFixed(2)
+    setPercentage(newPercentage)
+  }, [expenses, spent])
 
   return (
     <S.BCContainer>
       <div>
-        <h2>Graphic</h2>
+        <CircularProgressbarWithChildren
+          value={percentage}
+          text={`${percentage}% spended`}
+          strokeWidth={10}
+          styles={buildStyles({
+            strokeLinecap: 'butt',
+            pathColor: percentage > 100 ? '#cc0700' : '#3997BD',
+            trailColor: '#eaeaea',
+            textSize: '8px',
+            textColor: percentage > 100 ? '#cc0700' : '#3997BD',
+          })}
+        />
       </div>
 
       <div>

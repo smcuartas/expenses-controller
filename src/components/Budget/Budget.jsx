@@ -1,41 +1,38 @@
-import { useState } from "react"
-import * as S from "./styled-budget"
+import { useState } from 'react'
+import * as S from './styled-budget'
 
-function Budget({budget, setBudget, setValidBudget}){
-    const[alert, setAlert] = useState('');
+function Budget({ budget, setBudget, setValidBudget }) {
+  const [alert, setAlert] = useState('')
 
-    const handleBudget = (e) => {
-        e.preventDefault();
+  const handleBudget = (e) => {
+    e.preventDefault()
 
-        if(!budget || budget < 0){
-            setAlert(budget + " it's not a valid value")
-            return
-        }
-
-        setAlert('');
-        setValidBudget(true)
+    if (!budget || budget < 0) {
+      setAlert(budget + " it's not a valid value")
+      return
     }
 
-    return(
-        <S.BudgetContainer>
-            <S.Form onSubmit={handleBudget}>
-                <label>Budget value</label>
-                
-                <input
-                    type="number"
-                    value={budget}
-                    onChange={ e => setBudget(Number(e.target.value)) }
-                />
+    setAlert('')
+    setValidBudget(true)
+  }
 
-                <input
-                    type="Submit"
-                    value="Add budget"
-                />
+  return (
+    <S.BudgetContainer>
+      <S.Form onSubmit={handleBudget}>
+        <label>Budget value</label>
 
-                {alert && <S.Alert>{alert}</S.Alert>}
-            </S.Form>
-        </S.BudgetContainer>
-    )
+        <input
+          type="number"
+          value={budget}
+          onChange={(e) => setBudget(Number(e.target.value))}
+        />
+
+        <input type="Submit" value="Add budget" readOnly />
+
+        {alert && <S.Alert>{alert}</S.Alert>}
+      </S.Form>
+    </S.BudgetContainer>
+  )
 }
 
 export default Budget
