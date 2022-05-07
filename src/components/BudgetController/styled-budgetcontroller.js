@@ -19,10 +19,6 @@ export const BCContainer = styled.div`
   @media (max-width: 767px) {
     grid-template-columns: repeat(1, 1fr);
     margin: 30px 0 -70px 0;
-
-    > div:nth-child(1) {
-      padding: 0 80px;
-    }
   }
 `
 

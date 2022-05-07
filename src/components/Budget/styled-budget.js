@@ -7,6 +7,10 @@ export const BudgetContainer = styled.div`
   background: white;
   border-radius: 5px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 767px) {
+    margin: 30px 0;
+  }
 `
 
 export const Form = styled.form`
